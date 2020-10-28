@@ -60,54 +60,64 @@
     <script>
         $(document).ready(function () {
 
-            assessments = getAllAssessments();
-            var i = 0;
-            while (i < assessments.length) {
-                assessment = assessments[i];
-                $("#assessmentSelect").append("<option value='" + assessment.AssessmentID + "'>" + assessment.AssessmentName + " </option>");
-                i = i + 1;
 
-                console.log(assessment);
-
-            }
             Enrolments = getAllEnrolments();
             var i = 0;
             while (i < Enrolments.length) {
-                Enrolment = Enrolments[i];
-                $("#enrolmentSelect").append("<option value='" + Enrolment.EnrolmentID + "'>" + Enrolment.EnrolmentID + "</option>");
+                enrolment = Enrolments[i];
+                student = getStudent(enrolment.Student);
+                course = getCourseInfo(enrolment.Course);
+                $("#enrolmentSelect").append("<option value='" + enrolment.EnrolmentID + "'>" + enrolment.Student + " " + student.FirstName + " " + student.LastName + " " + course.CourseName + "</option>");
                 i = i + 1;
 
-                console.log(Enrolment);
-
             }
+            $("#enrolmentSelect").change(function(){
+                enrolment = getEnrolment($("#enrolmentSelect").val());
+                course = getCourseInfo(enrolment.Course);
+                assessments = getAssessmentByCourse(course.CourseID);
+                $("#assessmentSelect").empty();
+                $("#assessmentSelect").append("<option value=''>Select Assessment</option>");
+                var i = 0;
+                while (i < assessments.length) {
+                    assessment = assessments[i];
+                    $("#assessmentSelect").append("<option value='" + assessment.AssessmentID + "'>" + assessment.AssessmentName + " </option>");
+                    i = i + 1;
+
+                }
+
+            });
+
+
+
             $("#enterResultBut").click(function () {
                 resultDate = $("#resultDate").val();
                 resultMark = $("#resultMark").val();
                 assessment = $("#assessmentSelect").val();
                 enrolment = $("#enrolmentSelect").val();
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Result/',
+                    data: {
+
+                        ResultDate: resultDate,
+                        Mark: resultMark,
+                        Assessment: assessment,
+                        Enrolment: enrolment,
+                    },
+                    success: function (data) {
+                        alert('Result added successfully');
+                        location.reload();
+                    },
+
+                    error: function (data) {
+                        alert('Please Check Fields');
+                        location.reload();
+                    }
+                });
             });
-            //Not working//
-            $.ajax({
-                type: 'POST',
-                dataType: 'JSON',
-                url: 'https://balham-college-db.herokuapp.com/api/Result/',
-                data: {
 
-                    ResultDate: resultDate,
-                    Mark: resultMark,
-                    Assessment: assessment,
-                    Enrolment: enrolment,
-                },
-                success: function (data) {
-                    alert('Result added successfully');
-                    location.reload();
-                },
 
-                error: function (data) {
-                    alert('Please Check Fields');
-                    location.reload();
-                }
-        });
 });
 
 
@@ -120,19 +130,11 @@
     <h1 align="center">Enter Result</h1>
     <hr>
     <form onsubmit="return false">
-        <table align="center">
-            <h2>Assessments</h2>
-            <tr>
-                <td>*<select id="assessmentSelect">
-                    <option>Select Assessment</option>
-                </select></td>
-            </tr>
-            <hr>
-        </table>
+
         <table align="center">
 
-            <hr>
-            <h2>Result</h2>
+
+            <h2 align="center">Result</h2>
             <tr>
                 <td>*<select id="enrolmentSelect">
                     <option>Select Enrolment</option>
@@ -143,6 +145,15 @@
             </tr>
             <tr>
                 <td>*<input id="resultDate" placeholder="Date" type="date"></td>
+            </tr>
+            <hr>
+        </table>
+        <table align="center">
+            <h2 align="center">Assessments</h2>
+            <tr>
+                <td>*<select id="assessmentSelect">
+                    <option>Select Assessment</option>
+                </select></td>
             </tr>
             <hr>
         </table>

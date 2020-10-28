@@ -119,7 +119,7 @@ function getProjectByLecturer(ProjectID) {
         type: 'Get',
         dataType: 'JSON',
         async:false,
-        url: 'https://balham-college-db.herokuapp.com/api/Enrolment/',
+        url: 'https://balham-college-db.herokuapp.com/api/ResearchProject/',
         success: function (data) {
             lecturerProj = data;
             var i = 0;
@@ -136,5 +136,29 @@ function getProjectByLecturer(ProjectID) {
         }
     });
     return projects;
+}
+function getAssessmentByCourse(courseID){
+    AssessmentCourse = [];
+    $.ajax({
+        type: 'Get',
+        dataType: 'JSON',
+        async:false,
+        url: 'https://balham-college-db.herokuapp.com/api/Assessment/',
+        success: function (data) {
+            Assessments = data;
+            var i = 0;
+            while (i<Assessments.length){
+                Assessment = Assessments[i];
+                if (courseID == Assessment.Course){
+                    AssessmentCourse.push(Assessment);
+                }
+                i++;
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+    return AssessmentCourse;
 }
 
