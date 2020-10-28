@@ -94,6 +94,10 @@
 
                 $("#studentID").val(student.StudentID);
                 $("#lastName").val(student.LastName);
+                $("#firstName").val(student.FirstName);
+                $("#streetAddress").val(student.StreetAddress);
+                $("#suburb").val(student.Suburb);
+                $("#city").val(student.City);
 
                 enrolments = getEnrollmentsByStudents($("#studentSelect").val());
                 $("#enrolmentSelect").empty();
@@ -112,6 +116,8 @@
 
                     $("#enrolmentNumber").val(enrolment.EnrolmentID);
                     $("#enrolmentYear").val(enrolment.Year);
+                    $("#enrolmentSemester").val(enrolment.Semester);
+                    $("#enrolmentCourse").val(enrolment.Course);
 
 
                 });
@@ -141,8 +147,8 @@
                             location.reload();
                         },
                     error: function (data) {
-                        // alert('error');
-                        // location.reload();
+                        alert('Please Check Fields');
+                        location.reload();
                         console.log(data)
                     },
 
@@ -212,7 +218,7 @@
                 <td><input id="enrolmentSemester" placeholder="Semester" readonly></td>
             </tr>
             <tr>
-                <td><input id="enrolmentCourseName" placeholder="Course Name" readonly></td>
+                <td><input id="enrolmentCourse" placeholder="Course" readonly></td>
             </tr>
         </table>
         <hr>
