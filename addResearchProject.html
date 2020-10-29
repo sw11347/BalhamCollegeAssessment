@@ -65,7 +65,6 @@
                 $("#lecturerSelect").append("<option value='" + lecturer.LecturerID + "'>" + lecturer.LastName + " " + lecturer.FirstName + "</option>");
                 i = i + 1;
 
-                console.log(lecturer);
 
             }
             topics = getAllTopics();
@@ -75,29 +74,7 @@
                 $("#topicSelect").append("<option value='" + topic.TopicID + "'>" + topic.Description + " </option>");
                 i = i + 1;
 
-                console.log(topic);
             }
-            $("#lecturerSelect").change(function () {
-                course = getAllLecturers($("#lecturerSelect").val());
-
-                $("#lecturerID").val(lecturer.LecturerID);
-                $("#lecturerFirstName").val(lecturer.FirstName);
-                $("#lecturerLastName").val(lecturer.LastName);
-            });
-
-            projects = getProjectByLecturer($("#projectSelect").val());
-            $("#projectSelect").empty();
-            $("#projectSelect").append("<option value=''>Select Project</option>");
-            var i = 0;
-            while (i < projects.length) {
-                project = projects[i];
-                $("#projectSelect").append("<option value='" + project.ProjectID + "'>" + project.Description + "</option>");
-                i = i + 1;
-
-                console.log(projects);
-
-            }
-
             $("#projectSelect").change(function () {
                 project = getProjectByLecturer($("#projectSelect").val());
 
@@ -107,14 +84,39 @@
 
 
             });
+            $("#lecturerSelect").change(function () {
+                lecturer = getAllLecturers($("#lecturerSelect").val());
 
+                $("#lecturerID").val(lecturer.LecturerID);
+                $("#lecturerFirstName").val(lecturer.FirstName);
+                $("#lecturerLastName").val(lecturer.LastName);
 
+                projects = getProjectByLecturer($("#projectSelect").val());
+                $("#projectSelect").empty();
+                $("#projectSelect").append("<option value=''>Select Project</option>");
+                var i = 0;
+                while (i < projects.length) {
+                    project = projects[i];
+                    $("#projectSelect").append("<option value='" + project.ProjectID + "'>" + project.Description + " " + project.Lecturer + "</option>");
+                    i = i + 1;
+                    console.log(project);
+                }
+                $("#projectSelect").change(function () {
+                    project = getProjectByLecturer($("#projectSelect").val());
+
+                    $("#output").val(project.Output);
+                    $("#projectDescription").val(project.Description);
+                    $("#projectTopic").val(project.ResearchTopic);
+                });
+            });
             $("#addProjectBut").click(function () {
                 output = $("#newOutput").val();
                 description = $("#description").val();
                 startdate = $("#startDate").val();
                 lecturer = $("#lecturerSelect").val();
                 ResearchTopic = $("#topicSelect").val();
+
+
                 $.ajax({
                     type: 'POST',
                     dataType: 'JSON',
@@ -134,7 +136,6 @@
                     },
                     error: function (data) {
                         alert('Please Check Fields');
-                        location.reload();
                         console.log(data)
                     },
 
@@ -187,7 +188,7 @@
                 <td><input id="projectDescription" placeholder="Description" readonly></td>
             </tr>
             <tr>
-                <td><input id="projectTopicDescription" placeholder="Research Topic" readonly></td>
+                <td><input id="projectTopic" placeholder="Research Topic" readonly></td>
             </tr>
         </table>
         <hr>
