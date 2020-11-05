@@ -2,53 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Project</title>
-
+    <title>Add Assessment</title>
     <script src="js/script.js"></script>
-
     <script
             src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous">
     </script>
-
-    <style type="text/css">
-        button{
-            background-color: #bbb;
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-        }
-        h1{
-            font-family: Bahnschrift;
-        }
-        h2{
-            font-family: Bahnschrift;
-        }
-        .container {
-            padding: 10px;
-            max-width: 500px;
-            margin: auto;
-            background-color: cadetblue;
-        }
-        body{
-
-            background-color: aliceblue;
-        }
-        label {
-            text-align: right;
-            width: 140px;
-            display: block;
-            float: left;
-            clear: left;
-            margin-right: 3px;
-            cursor: pointer
-        }
-        button {
-            width: 200px;
-            height: 10%;
-        }
-    </style>
     <script>
         $(document).ready(function () {
 
@@ -84,7 +44,7 @@
                         Course: course,
                     },
                     success: function (data) {
-                        alert('Aseessment added successfully');
+                        alert('Assessment added successfully');
                         location.reload();
                     },
 
@@ -100,57 +60,55 @@
 
 
     </script>
-
-
-
+    <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
-<div class="container">
-    <h1 align="center">Add Assessment</h1>
-    <hr>
-    <form onsubmit ="return false">
 
-        <table align="center">
+<div id="container">
+    <div id="content">
+        <hr>
+        <h1 align="center">Add Assessment</h1>
+        <hr>
+            <form onsubmit ="return false">
 
-            <h2 align="center">Course</h2>
+            <div class="fields">
+
+            <h2>Course</h2>
             <tr><td>*<select id="courseSelect">
                 <option value = "">Select Course</option>
             </select></td></tr>
 
             <hr>
-        </table>
-        <hr>
-        <table align="center">
+        </div>
+            <hr>
+            <div>
             <h2 align="center">Assessment Details</h2>
             <hr>
-            <tr><td>*<input id="assessmentNumber" type="number" min="1" max="5" placeholder="Number"></td></tr>
-            <tr><td>*<input id="assessmentName" maxlength="30" placeholder="Name"></td></tr>
-            <tr><td>*<select id="assessmentTypeSelect">
+            <p>*<input id="assessmentNumber" type="number" min="1" max="5" placeholder="Number"></p>
+            <p>*<input id="assessmentName" maxlength="30" placeholder="Name"></p>
+            <p>*<select id="assessmentTypeSelect">
                 <option value = "">Type</option>
                 <option value = "Assignment">Assignment</option>
                 <option value = "Written Test">Written Test</option>
                 <option value = "Practical Test">Practical Test</option>
-                <option value = "Final Exam">Final Exam</option></select></td></tr>
-            <tr><td>*<input id="assessmentWeighting" type="number" min="10" max="100" placeholder="Weighting"></td></tr>
-            <tr><td>*<input id="assessmentMaxMark" type="number" min="50" max="200" placeholder="Maximum Mark"></td></tr>
-        </table>
+                <option value = "Final Exam">Final Exam</option></select></p>
+            <p>*<input id="assessmentWeighting" type="number" min="10" max="100" placeholder="Weighting"></p>
+            <p>*<input id="assessmentMaxMark" type="number" min="50" max="200" placeholder="Maximum Mark"></p>
+        </div>
 
 
 
+        <div id="requiredFields">
+            <p>Required Fields*</p>
 
-    </form>
+        </div>
 
-
-
-    <table align="center">
-        <tr><td>Required Fields*</td></tr>
-        <hr>
-    </table>
-    <hr>
-    <div>
-        <button id="addAssessmentBut" >Add Assessment</button><button id="returnBut">Return</button>
+        <div>
+            <button id="addAssessmentBut" >Add Assessment</button>
+            <a href="MainMenu.html"><button id="returnBut">Return</button></a>
+        </div>
+        </form>
     </div>
-    </form>
 </div>
 </body>
 </html>

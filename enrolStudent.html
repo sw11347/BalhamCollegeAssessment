@@ -15,49 +15,6 @@
 
     <script src="https://marshall942.github.io/BalhamCollege/js/script.js">
     </script>
-    <style type="text/css">
-        button {
-            background-color: #bbb;
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-        }
-
-        h1 {
-            font-family: Bahnschrift;
-        }
-
-        h2 {
-            font-family: Bahnschrift;
-        }
-
-        .container {
-            padding: 10px;
-            max-width: 500px;
-            margin: auto;
-            background-color: cadetblue;
-        }
-
-        body {
-
-            background-color: aliceblue;
-        }
-
-        label {
-            text-align: right;
-            width: 140px;
-            display: block;
-            float: left;
-            clear: left;
-            margin-right: 3px;
-            cursor: pointer
-        }
-
-        button {
-            width: 200px;
-            height: 10%;
-        }
-    </style>
     <script>
 
 
@@ -110,7 +67,6 @@
                     i = i + 1;
 
                     console.log(enrolment);
-
                 }
                 $("#enrolmentSelect").change(function () {
                     enrolment = getEnrolment($("#enrolmentSelect").val());
@@ -122,9 +78,7 @@
 
 
                 });
-
             });
-
             $("#enrolStudentBut").click(function () {
                 year = $("#year").val();
                 semester = $("#semester").val();
@@ -143,131 +97,123 @@
                         Student: student,
                         Course: course,
                     },
-                        success: function (data) {
-                            alert('Enrolment added successfully');
-                            location.reload();
-                        },
+                    success: function (data) {
+                        alert('Enrolment added successfully');
+                        location.reload();
+                    },
                     error: function (data) {
                         alert('Please Check Fields');
                         location.reload();
                         console.log(data)
                     },
-
-                    });
-
+                });
             });
-
-
         });
-
-
-
     </script>
-
-
+    <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
-<div class="container">
-    <h1 align="center">Enrol Student</h1>
+<div id="container">
     <hr>
+    <h1>Enrol Student</h1>
+    <hr>
+    <div id="content">
     <form onsubmit="return false">
 
-        <table align="center">
-
-            <h2 align="center">Student</h2>
-            <tr>
-                <td>*<select id="studentSelect">
+        <div class="fields">
+            <hr>
+            <h2 >Student</h2>
+            <hr>
+            <p>
+                *<select id="studentSelect">
                     <option value="">Select Student</option>
-                </select></td>
-            </tr>
-            <tr>
-                <td><input id="studentID" placeholder="Student ID" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="lastName" placeholder="Last Name" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="firstName" placeholder="First Name" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="streetAddress" placeholder="Street Address" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="suburb" placeholder="Suburb" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="city" placeholder="City" readonly></td>
-            </tr>
+                </select>
+            </p>
+            <p>
+                <input id="studentID" placeholder="Student ID" readonly>
+            </p>
+            <p>
+                <input id="lastName" placeholder="Last Name" readonly>
+            </p>
+            <p>
+                <input id="firstName" placeholder="First Name" readonly>
+            </p>
+            <p>
+                <input id="streetAddress" placeholder="Street Address" readonly>
+            </p>
+            <p>
+                <input id="suburb" placeholder="Suburb" readonly>
+            </p>
+            <p>
+                <input id="city" placeholder="City" readonly>
+            </p>
             <hr>
-        </table>
-        <hr>
-        <table align="center">
-            <h2 align="center">Enrolment</h2>
+        </div>
+        <div class="fields">
             <hr>
-            <tr>
-                <td>*<select id="enrolmentSelect">
+            <h2>Enrolment</h2>
+            <hr>
+            <p>
+                *<select id="enrolmentSelect">
                     <option value="">Select Enrolment</option>
-                </select></td>
-            </tr>
-            <tr>
-                <td><input id="enrolmentNumber" placeholder="Enrolment Number" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="enrolmentYear" placeholder="Year" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="enrolmentSemester" placeholder="Semester" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="enrolmentCourse" placeholder="Course" readonly></td>
-            </tr>
-        </table>
-        <hr>
-        <table align="center">
-            <h2 align="center">Course</h2>
+                </select>
+            </p>
+            <p>
+                <input id="enrolmentNumber" placeholder="Enrolment Number" readonly>
+            </p>
+            <p>
+                <input id="enrolmentYear" placeholder="Year" readonly>
+            </p>
+            <p>
+                <input id="enrolmentSemester" placeholder="Semester" readonly>
+            </p>
+            <p>
+                <input id="enrolmentCourse" placeholder="Course" readonly>
+            </p>
+        </div>
+        <div class="fields">
             <hr>
-            <tr>
-                <td>*<select id="courseSelect">
+            <h2>Course</h2>
+            <hr>
+            <p>
+                *<select id="courseSelect">
                     <option value="">Select Course</option>
-                </select></td>
-            </tr>
-            <tr>
-                <td><input id="courseID" placeholder="Course ID" readonly></td>
-            </tr>
-            <tr>
-                <td><input id="courseName" placeholder="Course Name" readonly></td>
-            </tr>
-            <tr>
-                <td>*<input id="year" type="number" min="2018" max="2050" placeholder="Year"></td>
-            </tr>
-            <tr>
-                <td>*<input id="semester" type="number" min="1" max="3" placeholder="Semester"></td>
-            </tr>
-            <tr>
-                <td>*<select id="statusSelect">
+                </select>
+            </p>
+            <p>
+                <input id="courseID" placeholder="Course ID" readonly>
+            </p>
+            <p>
+                <input id="courseName" placeholder="Course Name" readonly>
+            </p>
+            <p>
+                *<input id="year" type="number" min="2018" max="2050" placeholder="Year">
+            </p>
+            <p>
+                *<input id="semester" type="number" min="1" max="3" placeholder="Semester">
+            </p>
+            <p>
+                *<select id="statusSelect">
                     <option value="">Status</option>
                     <option value="Pending">Pending</option>
                     <option value="Paid">Paid</option>
                     <option value="Complete">Complete</option>
-                </select></td>
-            </tr>
-
-
-        </table>
-
-
-        <table align="center">
-            <tr>
-                <td>Required Fields*</td>
-            </tr>
+                </select>
+            </p>
+        </div>
+        <div id="requiredFields">
             <hr>
-        </table>
-        <hr>
-        <div>
+            <p>
+                Required Fields*
+            </p>
+            <hr>
+        </div>
+        <div id="buttonDiv">
             <button id="enrolStudentBut">Enrol Student</button>
-            <button id="returnBut">Return</button>
+            <a href="MainMenu.html"><button id="returnBut">Return</button></a>
         </div>
     </form>
+    </div>
 </div>
 </body>
 </html>

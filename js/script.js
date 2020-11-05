@@ -113,6 +113,11 @@ function getAllTopics (){
     });
     return topics;
 }
+/**
+ * @Name: getProjectByLecturer
+ * @Parametre: Lecturer
+ * @returns: Projects Array
+ */
 function getProjectByLecturer(ProjectID) {
     lecturerProj = [];
     $.ajax({
@@ -125,7 +130,7 @@ function getProjectByLecturer(ProjectID) {
             var i = 0;
             while (i<lecturerProj.length){
                 project = projects[i];
-                if (LecturerID == projects.Lecturer){
+                if (LecturerID == project.Lecturer){
                     lecturerProj.push(project);
                 }
                 i++;
@@ -137,6 +142,11 @@ function getProjectByLecturer(ProjectID) {
     });
     return lecturerProj;
 }
+/**
+ * @Name: getAssessmentByCourse
+ * @Parametre: Course
+ * @returns: Assessments Array
+ */
 function getAssessmentByCourse(courseID){
     AssessmentCourse = [];
     $.ajax({
@@ -161,4 +171,44 @@ function getAssessmentByCourse(courseID){
     });
     return AssessmentCourse;
 }
+/**
+ * @Name: getSelectedecturers
+ * @Parametre: LecturerID
+ * @returns: Lecturers Array
+ */
+function getSelectedLecturer(ID){
+    lecturers = [];
 
+    $.ajax({
+        type: 'Get',
+        dataType: 'JSON',
+        async:false,
+        url: 'https://balham-college-db.herokuapp.com/api/Lecturer/' + ID + "/",
+        success: function (data) {
+            lecturers = data;
+        },
+        error: function (err) {
+            console.log(err);
+        }
+
+    });
+    return lecturers;
+}
+function getAllProgrammes (){
+    programmes = [];
+
+    $.ajax({
+        type: 'Get',
+        dataType: 'JSON',
+        async:false,
+        url: 'https://balham-college-db.herokuapp.com/api/Programme/',
+        success: function (data) {
+            programmes = data;
+        },
+        error: function (err) {
+            console.log(err);
+        }
+
+    });
+    return programmes;
+}

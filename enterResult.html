@@ -8,55 +8,9 @@
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous">
     </script>
-    <style type="text/css">
-        button {
-            background-color: #bbb;
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-        }
-
-        h1 {
-            font-family: Bahnschrift;
-        }
-
-        h2 {
-            font-family: Bahnschrift;
-        }
-
-        .container {
-            padding: 10px;
-            max-width: 500px;
-            margin: auto;
-            background-color: cadetblue;
-        }
-
-        body {
-
-            background-color: aliceblue;
-        }
-
-        label {
-            text-align: right;
-            width: 140px;
-            display: block;
-            float: left;
-            clear: left;
-            margin-right: 3px;
-            cursor: pointer
-        }
-
-        button {
-            width: 200px;
-            height: 10%;
-        }
-    </style>
     <script src="js/script.js"></script>
-    <script src="https://xxbridgeyxx.github.io/BALHAMCOLLEGE/js/script.js">
-    </script>
-
-    <script src="https://marshall942.github.io/BalhamCollege/js/script.js">
-    </script>
+    <script src="https://xxbridgeyxx.github.io/BALHAMCOLLEGE/js/script.js"></script>
+    <script src="https://marshall942.github.io/BalhamCollege/js/script.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -123,53 +77,62 @@
 
 
     </script>
-
+    <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
-<div class="container">
-    <h1 align="center">Enter Result</h1>
-    <hr>
-    <form onsubmit="return false">
-
-        <table align="center">
+<div id="container">
+    <div id="content">
+        <form onsubmit="return false">
 
 
-            <h2 align="center">Result</h2>
-            <tr>
-                <td>*<select id="enrolmentSelect">
+            <hr>
+            <h1 align="center">Enter Result</h1>
+            <hr>
+
+
+            <div class="fields">
+                <hr>
+            <h2>Result</h2>
+                <hr>
+            <p>
+                *<select id="enrolmentSelect">
                     <option>Select Enrolment</option>
-                </select></td>
-            </tr>
-            <tr>
-                <td>*<input id="resultMark" placeholder="Mark" type="number" min="0" max="200"></td>
-            </tr>
-            <tr>
-                <td>*<input id="resultDate" placeholder="Date" type="date"></td>
-            </tr>
-            <hr>
-        </table>
-        <table align="center">
-            <h2 align="center">Assessments</h2>
-            <tr>
-                <td>*<select id="assessmentSelect">
+                </select>
+            </p>
+            <p>
+                *<input id="resultMark" placeholder="Mark" type="number" min="0" max="200">
+            </p>
+            <p>
+                *<input id="resultDate" placeholder="Date" type="date">
+            </p>
+        </div>
+
+            <div class="fields">
+                <hr>
+                <h2 >Assessments</h2>
+                <hr>
+                <p>
+                    *<select id="assessmentSelect">
                     <option>Select Assessment</option>
-                </select></td>
-            </tr>
-            <hr>
-        </table>
-    </form>
-    <table align="center">
-        <tr>
-            <td>Required Fields*</td>
-        </tr>
-        <hr>
-    </table>
-    <hr>
-    <div>
-        <button id="enterResultBut">Enter Result</button>
-        <button id="returnBut">Return</button>
+                    </select>
+                </p>
+            </div>
+
+            <div id="requiredFields">
+                <hr>
+                <p>
+                <td>Required Fields*</td>
+                </p>
+                <hr>
     </div>
+
+    <div id="buttonDiv">
+        <button id="enterResultBut">Enter Result</button>
+        <a href="MainMenu.html"><button id="returnBut">Return</button></a>
+    </div>
+
     </form>
+    </div>
 </div>
 </body>
 </html>
